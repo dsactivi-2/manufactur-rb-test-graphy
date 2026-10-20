@@ -1,0 +1,36 @@
+{
+  "name": "manufact-db-rollback",
+  "main": "../../src/worker/index.ts",
+  "account_id": "2f8c7ae79d6d316eac3961585f5c2f5b",
+  "compatibility_date": "2026-10-07",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "vars": {
+    "ENVIRONMENT": "production",
+    "WRITES_ENABLED": "true",
+    "RESTORES_ENABLED": "true",
+    "REQUIRE_APPROVAL": "true",
+    "ALLOW_TEST_ENTITIES": "false",
+    "HISTORY_RETENTION_DAYS": "365"
+  },
+  "hyperdrive": [
+    {
+      "binding": "HYPERDRIVE_FRESH",
+      "id": "086fd3f6d396445eb3db0cb64f5ff9c7"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "AUDIT_ARCHIVE",
+      "bucket_name": "manufact-db-rollback-audit"
+    }
+  ],
+  "triggers": {
+    "crons": ["*/5 * * * *"]
+  },
+  "observability": {
+    "enabled": true,
+    "logs": { "enabled": true },
+    "traces": { "enabled": true }
+  }
+}
